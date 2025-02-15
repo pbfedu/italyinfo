@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prohibicions a l'aeroport</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .faq-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+        .faq-item.highlight {
+            border-color: #0073e6;
+            box-shadow: 0 0 10px rgba(0, 115, 230, 0.5);
+        }
+        .faq-title {
+            padding: 15px;
+            cursor: pointer;
+            background: #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-title.highlight {
+            background: #e6f2ff;
+            color: #0073e6;
+            font-weight: bold;
+        }
+        .faq-title i {
+            transition: transform 0.3s;
+        }
+        .faq-title.active i {
+            transform: rotate(180deg);
+        }
+        .faq-content {
+            display: none;
+            padding: 15px;
+        }
+        .item-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .item i {
+            font-size: 1.5rem;
+            color: #0073e6;
+        }
+        footer {
+            background-color: #f1f1f1;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        footer a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Prohibicions a l'aeroport</h1>
+    </header>
+    <main class="container">
+        <div class="faq-grid">
+            <!-- Poco común -->
+            <div class="faq-item highlight">
+                <div class="faq-title highlight" onclick="toggleFaq(this)">
+                    <h2>Les errades més comunes</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content">
+                    <div class="item-list">
+                        <div class="item"><i class="fas fa-wine-bottle"></i><p>Begudes alcohòliques (superior a 70% d'alcohol).</p></div>
+                        <div class="item"><i class="fas fa-wine-bottle"></i><p>Begudes alcohòliques (si ets menor de 18 anys).</p></div>
+                        <div class="item"><i class="fas fa-prescription-bottle"></i><p>Líquids en envasos majors de 100 ml</p></div>
+                        <div class="item"><i class="fas fa-battery-half"></i><p>Bateries a la maleta facturada.</p></div>
+                        <div class="item"><i class="fas fa-laptop"></i><p>Maletes que no segueixin les normatives de l'aerolínia</p></div>
+                        <div class="item"><i class="fa-solid fa-smoking"></i><p>Vapers o cigarrets electrònics (a la maleta facturada)</p></div>
+                        <div class="item"><i class="fa-solid fa-smoking"></i><p>Vapers o cigarrets electrònics (si ets menor de 18 anys)</p></div>
+                        <div class="item"><i class="fa-solid fa-camera"></i><p>Fer fotos al control de seguretat o a prop</p></div>
+                        <div class="item"><i class="fa-solid fa-cart-flatbed-suitcase"></i><p>Deixar abandonat l'equipatge</p></div>
+                        <div class="item"><i class="fa-solid fa-smoking"></i><p>Fumar o vapejar dins l'aeroport</p></div>
+                    </div>
+                </div>
+            </div>
+            <i class=""></i>
+            <!-- Equipaje facturado -->
+            <div class="faq-item">
+                <div class="faq-title" onclick="toggleFaq(this)">
+                    <h2>Articles prohibits a l'equipatge facturat</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content">
+                    <div class="item-list">
+                        <div class="item"><i class="fas fa-bomb"></i><p>Explosius, granades, mines i detonadors.</p></div>
+                        <div class="item"><i class="fas fa-fire"></i><p>Combustibles líquids inflamables (gasolina, metanol...)</p></div>
+                        <div class="item"><i class="fas fa-battery-half"></i><p>Mòbils, ordinadors, tablets o objectes amb bateria / piles.</p></div>
+                        <div class="item"><i class="fas fa-biohazard"></i><p>Substàncies tòxiques o infeccioses (raticides, sang infectada...)</p></div>
+                        <div class="item"><i class="fa-solid fa-smoking"></i><p>Vapers o cigarrets electrònics</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Armas de fuego y proyectiles -->
+            <div class="faq-item">
+                <div class="faq-title" onclick="toggleFaq(this)">
+                    <h2>Armes de foc i projectils</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content">
+                    <div class="item-list">
+                        <div class="item"><i class="fas fa-gun"></i><p>Armes de foc (pistoles, rifles, escopetes, etc.)</p></div>
+                        <div class="item"><i class="fas fa-crosshairs"></i><p>Ballestes, arcs i fletxes.</p></div>
+                        <div class="item"><i class="fas fa-fish"></i><p>Arpons i fusells de pesca.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Objetos punzantes o con filo -->
+            <div class="faq-item">
+                <div class="faq-title" onclick="toggleFaq(this)">
+                    <h2>Objectes punxants o amb tall</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content">
+                    <div class="item-list">
+                        <div class="item"><i class="fa-solid fa-triangle-exclamation"></i><p>Destrals, esquerdes i similars.</p></div>
+                        <div class="item"><i class="fa-solid fa-triangle-exclamation"></i><p>Navalles i ganivets amb fulles de més de 6 cm.</p></div>
+                        <div class="item"><i class="fas fa-scissors"></i><p>Tisores amb fulles més grans de 6 cm.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Herramientas de trabajo -->
+            <div class="faq-item">
+                <div class="faq-title" onclick="toggleFaq(this)">
+                    <h2>Eines de treball</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content">
+                    <div class="item-list">
+                        <div class="item"><i class="fas fa-wrench"></i><p>Palanques i martells.</p></div>
+                        <div class="item"><i class="fa-solid fa-triangle-exclamation"></i><p>Trepants (taladros) elèctrics portàtils.</p></div>
+                        <div class="item"><i class="fas fa-screwdriver"></i><p>Tornavís llargs.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instrumentos contundentes -->
+            <div class="faq-item">
+                <div class="faq-title" onclick="toggleFaq(this)">
+                    <h2>Instruments contundents</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content">
+                    <div class="item-list">
+                        <div class="item"><i class="fa-solid fa-triangle-exclamation"></i><p>Bats de beisbol i softball.</p></div>
+                        <div class="item"><i class="fas fa-hockey-puck"></i><p>Pals d'hoquei, lacrosse i similars.</p></div>
+                        <div class="item"><i class="fas fa-fist-raised"></i><p>Manoples de ferro i similars.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sustancias químicas y tóxicas -->
+            <div class="faq-item">
+                <div class="faq-title" onclick="toggleFaq(this)">
+                    <h2>Substàncies químiques i tòxiques</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content">
+                    <div class="item-list">
+                        <div class="item"><i class="fas fa-vial"></i><p>Àcids, àlcalis i bateries humides.</p></div>
+                        <div class="item"><i class="fas fa-skull-crossbones"></i><p>Verins i material biològic.</p></div>
+                        <div class="item"><i class="fas fa-radiation"></i><p>Material radioactiu.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sustancias explosivas e inflamables -->
+            <div class="faq-item">
+                <div class="faq-title" onclick="toggleFaq(this)">
+                    <h2>Substàncies explosives i inflamables</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content">
+                    <div class="item-list">
+                        <div class="item"><i class="fas fa-bomb"></i><p>Explosius, dinamita i granades.</p></div>
+                        <div class="item"><i class="fas fa-fire"></i><p>Combustibles i líquids inflamables.</p></div>
+                        <div class="item"><i class="fa-solid fa-triangle-exclamation"></i><p>Focs artificials i bengales.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Líquidos, aerosoles y geles -->
+            <div class="faq-item">
+                <div class="faq-title" onclick="toggleFaq(this)">
+                    <h2>Normativa de líquids, aerosols i gels (LAG)</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-content">
+                    <div class="item-list">
+                        <p>Tots els LAG hauran d'estar en envasos individuals de capacitat no superior a 100 mil·lilitres o equivalent, introduïts en una bossa de plàstic transparent amb sistema de tancament, de capacitat no superior a 1 litre, en què càpiguen amb comoditat estant la bossa tancada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>La informació en aquest lloc web és orientativa, no oficial ni garantida. Consulta sempre amb les autoritats pertinents per obtenir dades actualitzades i precises. <a href="legal.html">Veure l'exempció de responsabilitat completa</a></p>
+    </footer>
+    <script>
+        function toggleFaq(element) {
+            element.classList.toggle('active');
+            const content = element.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

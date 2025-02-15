@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informació de Vols</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 0 0 15px 15px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .flight {
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #eef7ff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .flight-info {
+            flex: 1;
+        }
+        .icon {
+            font-size: 1.5rem;
+            color: #0073e6;
+            margin-right: 10px;
+        }
+        .countdown {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        .info-btn {
+            background-color: gray;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: not-allowed;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            pointer-events: none;
+        }
+        .enabled {
+            background-color: #0073e6;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+        .back-btn {
+            display: block;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #0073e6;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+        .back-btn:hover {
+            background-color: #005bb5;
+        }
+        .info-msg {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    Informació de Vols
+    </header>
+    <main class="container">
+        <div class="flight">
+            <div class="flight-info">
+                <h2>VY6100</h2>
+                <p><i class="fas fa-plane-departure icon"></i> <strong>Sortida:</strong> Barcelona-El Prat (BCN) - 07:10</p>
+                <p><i class="fas fa-plane-arrival icon"></i> <strong>Arribada:</strong> Roma-Fiumicino (FCO) - 09:00</p>
+                <p class="countdown" id="countdown1"><strong>Temps restant:</strong> <span>Calculant...</span></p>
+            </div>
+            <a id="info1" class="info-btn" href="https://www.flightaware.com/live/flight/VLG6100" target="_blank">
+                <i class="fas fa-info-circle"></i> Rastreja el vol
+            </a>
+        </div>
+
+        <div class="flight">
+            <div class="flight-info">
+                <h2>VY6104</h2>
+                <p><i class="fas fa-plane-departure icon"></i> <strong>Sortida:</strong> Barcelona-El Prat (BCN) - 09:40</p>
+                <p><i class="fas fa-plane-arrival icon"></i> <strong>Arribada:</strong> Roma-Fiumicino (FCO) - 11:25</p>
+                <p class="countdown" id="countdown2"><strong>Temps restant:</strong> <span>Calculant...</span></p>
+            </div>
+            <a id="info2" class="info-btn" href="https://es.flightaware.com/live/flight/VLG6104" target="_blank">
+                <i class="fas fa-info-circle"></i> Rastreja el vol
+            </a>
+        </div>
+
+        <p class="info-msg">El rastreig en directe es desbloqueja 12 hores abans de la sortida del vol.</p>
+        <a href="index.html" class="back-btn">Prohibicions a l'aeroport</a>
+    </main>
+
+    <script>
+        function updateCountdown(id, date, infoBtn) {
+            function refresh() {
+                const countdownElem = document.getElementById(id).querySelector('span');
+                const btn = document.getElementById(infoBtn);
+                const now = new Date();
+                const flightTime = new Date(date);
+                const diff = flightTime - now;
+
+                if (diff <= 0) {
+                    countdownElem.innerHTML = "El vol ja ha sortit.";
+                    btn.classList.add("enabled");
+                } else {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    countdownElem.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                    
+                    if (diff <= 12 * 60 * 60 * 1000) {
+                        btn.classList.add("enabled");
+                        btn.removeAttribute("disabled");
+                    }
+                }
+            }
+            refresh();
+            setInterval(refresh, 1000);
+        }
+
+        updateCountdown("countdown1", "2025-03-04T07:10:00", "info1");
+        updateCountdown("countdown2", "2025-03-04T09:40:00", "info2");
+    </script>
+</body>
+</html>
